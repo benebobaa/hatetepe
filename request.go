@@ -47,7 +47,6 @@ func parseRequest(conn net.Conn) (*Request, error) {
 		line, err := reader.ReadString('\n')
 
 		if err != nil || line == "\r\n" {
-			fmt.Println("error or line :: ", err, " :: ", line)
 			break
 		}
 
