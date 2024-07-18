@@ -2,8 +2,9 @@ package main
 
 import (
 	"fmt"
-	http "http_from_scratch"
 	"log"
+
+	"github.com/benebobaa/hatetepe"
 )
 
 type HelloWorld struct {
@@ -17,9 +18,9 @@ func main() {
 	// 	w.Write([]byte("hello brow"))
 	// })
 
-	router := http.NewRouter()
+	router := hatetepe.NewRouter()
 
-	router.HandleFunc("GET", "/", func(w http.ResponseWriter, r *http.Request) {
+	router.HandleFunc("GET", "/", func(w hatetepe.ResponseWriter, r *hatetepe.Request) {
 
 		// w.Write([]byte("Hello, World!"))
 
@@ -30,7 +31,7 @@ func main() {
 		w.WriteJSON(hello)
 	})
 
-	router.HandleFunc("POST", "/hello", func(w http.ResponseWriter, r *http.Request) {
+	router.HandleFunc("POST", "/hello", func(w hatetepe.ResponseWriter, r *hatetepe.Request) {
 		log.Println("hello :: ", r.URL)
 
 		var hello HelloWorld
@@ -45,7 +46,7 @@ func main() {
 		fmt.Println("Message:", hello.Message)
 	})
 
-	server := &http.Server{
+	server := &hatetepe.Server{
 		Addr:    ":8080",
 		Handler: router,
 	}
